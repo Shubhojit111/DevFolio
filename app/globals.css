@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #e5e2e1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #0066ff;
+  --color-primary-hover: #2e82ff;
+  --color-surface: #131313;
+  --color-surface-card: rgba(20, 20, 20, 0.6);
+  --color-surface-container: #201f1f;
+  --color-surface-high: #2a2a2a;
+  --color-surface-lowest: #0e0e0e;
+  --color-on-surface: #e5e2e1;
+  --color-muted: #8c90a1;
+  --color-outline: #424656;
+
+  --font-sans: var(--font-lexend), "Lexend", "Segoe UI", Arial, sans-serif;
+  --font-display: var(--font-raleway), "Raleway", "Segoe UI", Arial, sans-serif;
+  --font-serif: var(--font-poppins), "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Mobile performance: disable heavy GPU effects */
+@media (max-width: 1023px) {
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  [class*="blur-[120px]"],
+  [class*="blur-[130px]"],
+  [class*="blur-[100px]"],
+  [class*="blur-[110px]"] {
+    filter: none !important;
+    opacity: 0.5;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Raleway Bold — impact hero headline */
+.font-hero-thin {
+  font-family: var(--font-raleway), "Raleway", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-caret { animation: caret-blink 1s step-end infinite; }
+
+::selection {
+  background-color: #0066ff;
+  color: white;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: #424656; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #8c90a1; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(0, 102, 255, 0); }
+}
+.pulse-dot { animation: pulse-glow 2s ease-in-out infinite; }
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float { animation: float-y 5s ease-in-out infinite; }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 14s linear infinite; }
+
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(4%, -6%) scale(1.08); }
+  66% { transform: translate(-5%, 4%) scale(0.96); }
+}
+.animate-mesh { animation: mesh-drift 16s ease-in-out infinite; }
