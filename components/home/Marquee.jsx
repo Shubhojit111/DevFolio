@@ -12,7 +12,9 @@ const rowA = [
   "Node.js",
   "Express.js",
   "MongoDB",
-  "MERN Stack",
+  "GSAP",
+  "HTML5",
+  "CSS3",
 ];
 
 const rowB = [
@@ -20,39 +22,41 @@ const rowB = [
   "Stitch Design",
   "API Development",
   "JWT Auth",
-  "REST APIs",
   "Git & GitHub",
   "Firebase",
   "MySQL",
+  "Postman",
+  "VS Code",
 ];
 
-function TechLogo({ label, size }) {
+function TechLogo({ label }) {
   const { Icon, color, Icon2, color2 } = getTechIcon(label);
   return (
-    <span className="group/item flex shrink-0 items-center gap-6 sm:gap-8 px-4 sm:px-6">
-      <span className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-2xl transition-all duration-300 shadow-sm">
-        <Icon size={size} style={{ color }} className="opacity-85 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all duration-300" />
-        {Icon2 && <Icon2 size={size} style={{ color: color2 }} className="opacity-85 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all duration-300" />}
+    <span className="group/item flex shrink-0 items-center justify-center px-6 sm:px-10 md:px-12 py-2">
+      <span className="flex items-center gap-3 p-3.5 sm:p-4">
+        <Icon size={38} style={{ color }} className="opacity-80 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all duration-300 sm:w-11 sm:h-11 w-9 h-9" />
+        {Icon2 && <Icon2 size={38} style={{ color: color2 }} className="opacity-80 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all duration-300 sm:w-11 sm:h-11 w-9 h-9" />}
       </span>
+      <span className="text-lg sm:text-2xl md:text-3xl font-hero-normal font-semibold text-white/90 group-hover/item:text-primary group-hover/item:scale-105 transition-all duration-300 whitespace-nowrap">{label}</span>
     </span>
   );
 }
 
-/**
- * A grabbable, infinitely-looping marquee row. Auto-scrolls in `direction`
- * (1 or -1) until the user grabs it — then it tracks the pointer directly,
- * and on release it keeps drifting in whichever direction it was flung.
- */
-function DraggableRow({ items, direction = 1, speed = 34, big = false }) {
+function DraggableRow({ items, direction = 1, speed = 32 }) {
   const trackRef = useRef(null);
   const x = useMotionValue(0);
   const dirRef = useRef(direction);
   const draggingRef = useRef(false);
   const [setWidth, setSetWidth] = useState(0);
 
+  // Quadruple items so the marquee length always exceeds screen width on all resolutions
+  const quadItems = [...items, ...items, ...items, ...items];
+
   useEffect(() => {
     const measure = () => {
-      if (trackRef.current) setSetWidth(trackRef.current.scrollWidth / 2);
+      if (trackRef.current) {
+        setSetWidth(trackRef.current.scrollWidth / 2);
+      }
     };
     measure();
     window.addEventListener("resize", measure);
@@ -85,8 +89,6 @@ function DraggableRow({ items, direction = 1, speed = 34, big = false }) {
     wrap();
   };
 
-  const iconSize = big ? 48 : 48;
-
   return (
     <div className="relative w-full overflow-hidden select-none touch-pan-y">
       <motion.div
@@ -99,12 +101,10 @@ function DraggableRow({ items, direction = 1, speed = 34, big = false }) {
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         whileTap={{ cursor: "grabbing" }}
-        className={`flex w-max cursor-grab items-center ${
-          big ? "text-3xl sm:text-5xl md:text-6xl" : "text-2xl sm:text-4xl md:text-5xl"
-        }`}
+        className="flex w-max cursor-grab items-center"
       >
-        {[...items, ...items].map((label, i) => (
-          <TechLogo key={`${label}-${i}`} label={label} size={iconSize} />
+        {quadItems.map((label, i) => (
+          <TechLogo key={`${label}-${i}`} label={label} />
         ))}
       </motion.div>
     </div>
@@ -113,20 +113,21 @@ function DraggableRow({ items, direction = 1, speed = 34, big = false }) {
 
 export default function Marquee() {
   return (
-    <section className="relative py-10 md:py-14 border-y border-white/[0.06] overflow-hidden">
-      <div className="absolute left-6 top-4 md:left-16 md:top-6 flex items-center gap-2 text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-muted/40 z-10 pointer-events-none">
-        <span className="h-1 w-1 rounded-full bg-primary/50" />
+    <section className="relative py-12 md:py-16 border-y border-white/[0.06] bg-[#0d0a12] overflow-hidden">
+      <div className="absolute left-6 top-4 md:left-16 md:top-5 flex items-center gap-2 text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-muted/40 z-20 pointer-events-none">
+        <span className="h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse" />
         Grab &amp; drag
       </div>
 
-      {/* Edge fades so the rows feel infinite */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 md:w-40 bg-gradient-to-r from-[#0d0a12] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 md:w-40 bg-gradient-to-l from-[#0d0a12] to-transparent" />
+      {/* Deep side dark masks with multi-stop gradient blur for seamless edge fade */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 sm:w-48 md:w-64 bg-gradient-to-r from-[#0d0a12] via-[#0d0a12]/80 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 sm:w-48 md:w-64 bg-gradient-to-l from-[#0d0a12] via-[#0d0a12]/80 to-transparent" />
 
-      <div className="space-y-3 md:space-y-5">
-        <DraggableRow items={rowA} direction={1} speed={34} />
-        <DraggableRow items={rowB} direction={-1} speed={26} />
+      <div className="space-y-4 md:space-y-6">
+        <DraggableRow items={rowA} direction={1} speed={32} />
+        <DraggableRow items={rowB} direction={-1} speed={24} />
       </div>
     </section>
   );
 }
+
