@@ -58,6 +58,14 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "Framer Motion", "GSAP Animations"],
   },
   {
+    title: "Fight Club",
+    category: "Modern Fitness & Combat Training Platform",
+    year: "2025",
+    image: Assets.Fightclub,
+    link: "https://fightt-club.vercel.app/",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+  },
+  {
     title: "Wati Homepage",
     category: "Interactive Homepage Reconstruction",
     year: "2024",
@@ -73,33 +81,17 @@ const projects = [
     link: "https://significo-p2tf.vercel.app/",
     tech: ["Next.js", "Tailwind CSS", "MERN Stack", "GSAP ScrollTrigger"],
   },
-  {
-    title: "DevFeed Hub",
-    category: "Developer Social Feed Web Application",
-    year: "2024",
-    image: Assets.India,
-    link: "https://devfeed-zero.vercel.app/",
-    tech: ["React.js", "Tailwind CSS", "Node.js & Express", "MongoDB"],
-  },
-  {
-    title: "HireTrack System",
-    category: "Full-Stack Job Application Tracker",
-    year: "2024",
-    image: Assets.India,
-    link: "https://hiretrack-shubhojit.vercel.app/",
-    tech: ["React.js", "Node.js & Express", "MongoDB", "JWT Auth"],
-  },
-  {
-    title: "Yocom E-Commerce",
-    category: "E-Commerce Frontend UI Showcase",
-    year: "2024",
-    image: Assets.Yocom,
-    link: "https://yocom-rho.vercel.app/",
-    tech: ["Next.js", "Tailwind CSS", "GSAP Animations", "Framer Motion"],
-  },
 ];
 
-function ProjectCard({ p, idx, isActive = false, onMouseMove, onMouseLeave, onMouseEnter, className = "" }) {
+function ProjectCard({
+  p,
+  idx,
+  isActive = false,
+  onMouseMove,
+  onMouseLeave,
+  onMouseEnter,
+  className = "",
+}) {
   return (
     <motion.div
       animate={{ scale: isActive ? 1.08 : 1 }}
@@ -111,63 +103,65 @@ function ProjectCard({ p, idx, isActive = false, onMouseMove, onMouseLeave, onMo
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
         className={`group relative bg-surface-card backdrop-blur-[20px] border rounded-2xl p-5 overflow-hidden cursor-pointer transition-colors duration-500 shadow-[0_15px_30px_-10px_rgba(0,0,0,0.6)] ${
-          isActive ? "border-primary/50 bg-white/[0.03]" : "border-white/[0.08] hover:border-primary/40 hover:bg-white/[0.03]"
+          isActive
+            ? "border-primary/50 bg-white/[0.03]"
+            : "border-white/[0.08] hover:border-primary/40 hover:bg-white/[0.03]"
         }`}
         style={{ transformStyle: "preserve-3d" }}
         data-cursor="project"
         data-cursor-text="VISIT"
         onClick={() => p.link && window.open(p.link, "_blank")}
       >
-      <div className="card-glare absolute inset-0 pointer-events-none rounded-2xl z-20" />
+        <div className="card-glare absolute inset-0 pointer-events-none rounded-2xl z-20" />
 
-      <div
-        className="w-full h-56 md:h-72 rounded-xl overflow-hidden mb-6 bg-surface-high relative"
-        style={{ transform: "translateZ(30px)" }}
-      >
-        <Image
-          src={p.image}
-          alt={p.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 45vw"
-          priority={idx < 2}
-        />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-[0_0_20px_rgba(0,102,255,0.6)]">
-            <ArrowUpRight size={20} className="text-white" />
+        <div
+          className="w-full h-56 md:h-72 rounded-xl overflow-hidden mb-6 bg-surface-high relative"
+          style={{ transform: "translateZ(30px)" }}
+        >
+          <Image
+            src={p.image}
+            alt={p.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 45vw"
+            priority={idx < 2}
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-[0_0_20px_rgba(0,102,255,0.6)]">
+              <ArrowUpRight size={20} className="text-white" />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div
-        className="flex justify-between items-start px-2 pb-2"
-        style={{ transform: "translateZ(20px)" }}
-      >
-        <div className="flex-1 pr-4">
-          <h3 className="font-display text-xl md:text-2xl font-bold text-on-surface leading-snug">
-            {p.title}
-          </h3>
-          <p className="text-muted text-sm mt-1">{p.category}</p>
+        <div
+          className="flex justify-between items-start px-2 pb-2"
+          style={{ transform: "translateZ(20px)" }}
+        >
+          <div className="flex-1 pr-4">
+            <h3 className="font-display text-xl md:text-2xl font-bold text-on-surface leading-snug">
+              {p.title}
+            </h3>
+            <p className="text-muted text-sm mt-1">{p.category}</p>
 
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {p.tech.map((t) => {
-              const { Icon, color } = getTechIcon(t);
-              return (
-                <span
-                  key={t}
-                  className="flex items-center gap-1.5 text-[10px] bg-white/[0.04] text-muted border border-white/[0.06] px-2 py-0.5 rounded-md"
-                >
-                  <Icon size={11} style={{ color }} />
-                  {t}
-                </span>
-              );
-            })}
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {p.tech.map((t) => {
+                const { Icon, color } = getTechIcon(t);
+                return (
+                  <span
+                    key={t}
+                    className="flex items-center gap-1.5 text-[10px] bg-white/[0.04] text-muted border border-white/[0.06] px-2 py-0.5 rounded-md"
+                  >
+                    <Icon size={11} style={{ color }} />
+                    {t}
+                  </span>
+                );
+              })}
+            </div>
           </div>
+          <span className="text-[11px] uppercase tracking-[0.1em] text-muted border border-muted/20 px-3 py-1 rounded-full whitespace-nowrap">
+            {p.year}
+          </span>
         </div>
-        <span className="text-[11px] uppercase tracking-[0.1em] text-muted border border-muted/20 px-3 py-1 rounded-full whitespace-nowrap">
-          {p.year}
-        </span>
-      </div>
       </div>
     </motion.div>
   );
@@ -205,7 +199,10 @@ function HorizontalGallery({ tiltHandlers }) {
 
   useEffect(() => {
     return scrollYProgress.on("change", (v) => {
-      const idx = Math.min(projects.length - 1, Math.floor(v * projects.length));
+      const idx = Math.min(
+        projects.length - 1,
+        Math.floor(v * projects.length),
+      );
       setActiveIdx((prev) => (prev === idx ? prev : idx));
     });
   }, [scrollYProgress]);
@@ -219,7 +216,11 @@ function HorizontalGallery({ tiltHandlers }) {
   const active = projects[activeIdx];
 
   return (
-    <div ref={sectionRef} style={{ height: sectionHeight }} className="relative hidden lg:block">
+    <div
+      ref={sectionRef}
+      style={{ height: sectionHeight }}
+      className="relative hidden lg:block"
+    >
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         {/* Pinned info panel — opaque + overflow-hidden so cards actually
             disappear beneath it (rather than showing through) as the
@@ -247,7 +248,11 @@ function HorizontalGallery({ tiltHandlers }) {
             key={`t-${activeIdx}`}
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.45,
+              delay: 0.05,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="font-display text-2xl xl:text-3xl font-bold text-on-surface mb-3 leading-tight"
           >
             {active.title}
@@ -262,7 +267,8 @@ function HorizontalGallery({ tiltHandlers }) {
             {active.category}
           </motion.p>
           <span className="text-[10px] uppercase tracking-[0.25em] text-muted/40">
-            {String(activeIdx + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+            {String(activeIdx + 1).padStart(2, "0")} /{" "}
+            {String(projects.length).padStart(2, "0")}
           </span>
         </div>
 
@@ -298,7 +304,9 @@ function HorizontalGallery({ tiltHandlers }) {
 }
 
 export default function Projects() {
-  const isTouchDevice = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
   const handleMouseMove = (e) => {
     if (isTouchDevice) return;

@@ -16,6 +16,7 @@ import {
   SiHtml5,
   SiCss,
   SiPostman,
+  SiTypescript,
 } from "react-icons/si";
 import { Layers, Webhook, Sparkles, Bot, Paintbrush2, Code2, FileSpreadsheet, Presentation } from "lucide-react";
 
@@ -27,6 +28,7 @@ import { Layers, Webhook, Sparkles, Bot, Paintbrush2, Code2, FileSpreadsheet, Pr
  */
 const TECH_ICON_MAP = {
   "Next.js": { Icon: SiNextdotjs, color: "#FFFFFF" },
+  "TypeScript": { Icon: SiTypescript, color: "#3178C6" },
   "React.js": { Icon: SiReact, color: "#61DAFB" },
   "React": { Icon: SiReact, color: "#61DAFB" },
   "Framer Motion": { Icon: SiFramer, color: "#0055FF" },
