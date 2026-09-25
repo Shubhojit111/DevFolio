@@ -66,6 +66,14 @@ const projects = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
+    title: "Dev Creates",
+    category: "Modern Creative & Digital Stuido",
+    year: "2026",
+    image: Assets.DevCreates,
+    link: "https://dev-createss.vercel.app/",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+  },
+  {
     title: "Wati Homepage",
     category: "Interactive Homepage Reconstruction",
     year: "2024",
