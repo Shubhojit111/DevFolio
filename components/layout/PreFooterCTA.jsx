@@ -13,6 +13,8 @@ const allProjectImages = [
   Assets.India,
   Assets.Creamy,
   Assets.Wearit,
+  Assets.Fightclub,
+  Assets.DevCreates,
   Assets.Wati,
   Assets.Significo,
   Assets.Yocom,
