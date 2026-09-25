@@ -9,6 +9,7 @@ import Creamy from "@/Assets/images/Creamy.png";
 import CreamyMobile from "@/Assets/images/CreamyMobile.png";
 import Wearit from "@/Assets/images/Wearit.png";
 import Fightclub from "@/Assets/images/fightclub.png";
+import DevCreates from "@/Assets/images/DevCreates.png";
 
 const Assets = {
   Techzuno,
@@ -22,6 +23,7 @@ const Assets = {
   CreamyMobile,
   Wearit,
   Fightclub,
+  DevCreates
 };
 
 export default Assets;
